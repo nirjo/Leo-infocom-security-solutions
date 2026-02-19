@@ -1,67 +1,82 @@
 'use client';
-import { Facebook, Twitter, Instagram, Linkedin, Shield } from 'lucide-react';
 import Link from 'next/link';
+import { Globe } from 'lucide-react';
 
 const Footer = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <footer className="bg-black/90 text-white relative border-t border-white/10">
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-900/10 to-purple-900/10 pointer-events-none"></div>
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          
-          {/* Brand */}
-          <div className="col-span-1 md:col-span-2">
-            <Link href="/" className="flex items-center gap-2 mb-4 group">
-              <span className="text-4xl filter drop-shadow-[0_0_5px_rgba(14,165,233,0.5)] group-hover:scale-110 transition-transform">🦁</span>
-              <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-                Leo Infocom
-              </span>
-            </Link>
-            <p className="text-gray-400 max-w-sm mb-6">
-              Empowering Puducherry with state-of-the-art security solutions. 
-              We protect what matters most to you.
-            </p>
-            <div className="flex gap-4">
-              {[Facebook, Twitter, Instagram, Linkedin].map((Icon, idx) => (
-                <a key={idx} href="#" className="text-gray-400 hover:text-white transition-colors hover:scale-110 transform">
-                  <Icon className="w-5 h-5" />
-                </a>
-              ))}
-            </div>
-          </div>
+    <footer className="bg-amazon-blue text-white mt-8">
+      {/* Back to Top */}
+      <button 
+        onClick={scrollToTop}
+        className="w-full bg-amazon-light hover:bg-[#485769] py-4 text-sm font-medium transition-colors"
+      >
+        Back to top
+      </button>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="font-bold text-lg mb-4 text-blue-400">Quick Links</h3>
-            <ul className="space-y-2 text-gray-400">
-              {['Home', 'Products', 'Stats', 'About', 'Contact'].map((link) => (
-                <li key={link}>
-                  <Link href={`#${link.toLowerCase()}`} className="hover:text-white hover:pl-2 transition-all">
-                    {link}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+      {/* Valid Links Grid */}
+      <div className="max-w-[1000px] mx-auto py-12 px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
+        <div>
+          <h3 className="font-bold mb-4">Get to Know Us</h3>
+          <ul className="space-y-2 text-gray-300">
+            <li><Link href="#about" className="hover:underline">About Leo Infocom</Link></li>
+            <li><Link href="#" className="hover:underline">Careers</Link></li>
+            <li><Link href="#" className="hover:underline">Press Releases</Link></li>
+            <li><Link href="#" className="hover:underline">Amazon Science</Link></li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="font-bold mb-4">Connect with Us</h3>
+          <ul className="space-y-2 text-gray-300">
+            <li><a href="https://facebook.com/leoinfocom" className="hover:underline">Facebook</a></li>
+            <li><a href="https://instagram.com/leoinfocom" className="hover:underline">Instagram</a></li>
+            <li><a href="#" className="hover:underline">Twitter</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="font-bold mb-4">Make Money with Us</h3>
+          <ul className="space-y-2 text-gray-300">
+            <li><Link href="#" className="hover:underline">Sell on Leo</Link></li>
+            <li><Link href="#" className="hover:underline">Become an Affiliate</Link></li>
+            <li><Link href="#" className="hover:underline">Fulfilment by Leo</Link></li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="font-bold mb-4">Let Us Help You</h3>
+          <ul className="space-y-2 text-gray-300">
+            <li><Link href="#" className="hover:underline">Your Account</Link></li>
+            <li><Link href="#" className="hover:underline">Returns Centre</Link></li>
+            <li><Link href="#" className="hover:underline">100% Purchase Protection</Link></li>
+            <li><Link href="#" className="hover:underline">Help</Link></li>
+          </ul>
+        </div>
+      </div>
 
-          {/* Legal/Contact */}
-          <div>
-            <h3 className="font-bold text-lg mb-4 text-purple-400">Legal</h3>
-            <ul className="space-y-2 text-gray-400">
-              <li><Link href="#" className="hover:text-white">Privacy Policy</Link></li>
-              <li><Link href="#" className="hover:text-white">Terms of Service</Link></li>
-              <li className="pt-4 flex items-center gap-2">
-                <Shield className="w-4 h-4 text-green-400" />
-                <span className="text-xs">GST: 33EZJPM3196M1ZQ</span>
-              </li>
-            </ul>
-          </div>
+      {/* Divider */}
+      <div className="border-t border-gray-600 my-8"></div>
+
+      {/* Bottom Bar */}
+      <div className="flex flex-col items-center gap-4 pb-8">
+        <div className="flex items-center gap-2">
+          <span className="text-2xl">🦁</span>
+          <span className="font-bold text-xl">Leo Infocom</span>
+        </div>
+        
+        <div className="flex items-center gap-4 border border-gray-500 rounded-sm px-4 py-2 text-sm text-gray-300">
+           <Globe className="w-4 h-4" /> English
         </div>
 
-        <div className="border-t border-white/10 pt-8 text-center text-gray-500 text-sm">
-          <p>© {new Date().getFullYear()} Leo Infocom & Security Solutions. All rights reserved.</p>
-          <p className="mt-2 text-xs">Proprietor: Metildamary</p>
+        <div className="text-xs text-gray-400 text-center mt-4">
+          <ul className="flex flex-wrap justify-center gap-4 mb-2">
+            <li><a href="#" className="hover:underline">Conditions of Use</a></li>
+            <li><a href="#" className="hover:underline">Privacy Notice</a></li>
+            <li><a href="#" className="hover:underline">Interest-Based Ads</a></li>
+          </ul>
+          <p>© 1996-{new Date().getFullYear()}, Leo Infocom, Inc. or its affiliates</p>
+          <p className="mt-1">Proprietor: Metildamary | GST: 33EZJPM3196M1ZQ</p>
         </div>
       </div>
     </footer>
