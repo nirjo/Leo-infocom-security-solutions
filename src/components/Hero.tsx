@@ -1,74 +1,87 @@
 'use client';
 import { motion } from 'framer-motion';
+import { ArrowRight, ShieldCheck } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#0a0a0a] via-[#101018] to-[#1e1e2e]">
+    <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 left-0 w-full h-full bg-[url('/hero-bg-pattern.svg')] opacity-10 animate-pulse"></div>
-        {/* Particle/Cyber Lines Placeholder - using CSS gradients for subtle effect */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#0ea5e9]/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-[#0a0a0a] to-[#0a0a0a]"></div>
+        {/* Animated Orbs */}
+        <motion.div 
+          animate={{ x: [0, 100, 0], y: [0, -50, 0] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-[100px]"
+        />
+        <motion.div 
+          animate={{ x: [0, -100, 0], y: [0, 50, 0] }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear", delay: 2 }}
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-[100px]"
+        />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
-          className="mb-8"
+          className="mb-8 relative inline-block"
         >
-          {/* Large Logo Placeholder if needed, or just text */}
-          <div className="w-32 h-32 mx-auto mb-6 relative">
-             {/* Use Image component if logo available, or just icon */}
-             <div className="w-full h-full bg-[#0ea5e9]/20 rounded-full flex items-center justify-center border border-[#0ea5e9]/50 shadow-[0_0_30px_rgba(14,165,233,0.3)]">
-                <span className="text-4xl">🦁</span>
+          <div className="w-40 h-40 mx-auto mb-6 relative group">
+             <div className="absolute inset-0 bg-blue-500 rounded-full blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500 animate-pulse"></div>
+             <div className="w-full h-full bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center border border-blue-500/30 shadow-[0_0_50px_rgba(14,165,233,0.3)] relative z-10 group-hover:scale-105 transition-transform duration-300">
+                <span className="text-6xl filter drop-shadow-[0_0_10px_rgba(14,165,233,0.8)]">🦁</span>
              </div>
           </div>
-          
-          <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-4">
-            Empowering Security with <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0ea5e9] to-[#0284c7]">
-              Cutting-Edge Solutions
-            </span>
-          </h1>
-          <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-300">
-            IPBX, CCTV, Alarms & More for Your Peace of Mind
-          </p>
         </motion.div>
+
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-5xl md:text-7xl font-extrabold text-white tracking-tight mb-6"
+        >
+          Secure Tomorrow with <br/>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-green-400 animate-gradient-x background-animate">
+            Leo Infocom Today
+          </span>
+        </motion.h1>
+
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mt-6 max-w-2xl mx-auto text-xl text-gray-300 font-light"
+        >
+          <span className="text-blue-400">IPBX</span> • <span className="text-purple-400">CCTV</span> • <span className="text-green-400">Alarms</span> • <span className="text-orange-400">Smart Solutions</span>
+        </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="mt-10 flex flex-col sm:flex-row gap-6 justify-center"
         >
           <a
             href="#products"
-            className="px-8 py-3 bg-[#0ea5e9] hover:bg-[#0284c7] text-white rounded-full font-semibold transition-all shadow-[0_0_20px_rgba(14,165,233,0.3)] hover:shadow-[0_0_30px_rgba(14,165,233,0.5)] transform hover:scale-105"
+            className="group px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white rounded-full font-bold transition-all shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_40px_rgba(37,99,235,0.6)] transform hover:-translate-y-1 flex items-center justify-center gap-2"
           >
-            Explore Products
+            View Products
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </a>
           <a
             href="#contact"
-            className="px-8 py-3 border border-gray-600 hover:border-[#0ea5e9] text-gray-300 hover:text-white rounded-full font-semibold transition-all hover:bg-[#0ea5e9]/10"
+            className="group px-8 py-4 bg-white/5 border border-white/10 hover:border-orange-500/50 hover:bg-orange-500/10 text-white rounded-full font-bold transition-all backdrop-blur-sm flex items-center justify-center gap-2 hover:shadow-[0_0_20px_rgba(249,115,22,0.2)]"
           >
-            Contact Us
+            Get Quote
+            <ShieldCheck className="w-5 h-5 text-orange-400 group-hover:scale-110 transition-transform" />
           </a>
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
-      >
-        <div className="w-6 h-10 border-2 border-gray-500 rounded-full flex justify-center p-1">
-          <div className="w-1 h-2 bg-[#0ea5e9] rounded-full animate-bounce"></div>
-        </div>
-      </motion.div>
+      {/* Cyber Grid Overlay */}
+      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-20 pointer-events-none"></div>
     </section>
   );
 };

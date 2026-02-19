@@ -2,80 +2,107 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  PhoneIcon, 
-  VideoCameraIcon, 
-  FingerPrintIcon, 
-  ShieldCheckIcon, 
-  FireIcon, 
-  WifiIcon, 
-  LightBulbIcon, 
-  BoltIcon, 
-  UserGroupIcon 
-} from '@heroicons/react/24/outline';
+  Phone, 
+  Camera, 
+  Fingerprint, 
+  GalleryVerticalEnd, 
+  Flame, 
+  Network, 
+  Lightbulb, 
+  Zap, 
+  Video 
+} from 'lucide-react';
 
 const services = [
   {
     id: 'ipbx',
-    title: 'IPBX (INTERCOM PHONES)',
-    icon: PhoneIcon,
-    desc: 'Seamless internal communication with advanced intercom systems.',
-    features: ['Crystal clear voice', 'Scalable architecture', 'Remote extensions'],
+    title: 'IPBX Systems',
+    icon: Phone,
+    color: 'text-blue-400',
+    bg: 'bg-blue-400/10',
+    border: 'border-blue-400/20',
+    desc: 'Advanced intercom for seamless voice communication.',
+    features: ['Crystal Clear Voice', 'Scalable', 'Remote Access'],
   },
   {
     id: 'cctv',
-    title: 'Surveillance Solutions',
-    icon: VideoCameraIcon,
-    desc: 'Crystal-clear monitoring with HD/IP cameras for total security.',
-    features: ['HD & IP Cameras', 'Night Vision', 'Remote Mobile View'],
+    title: 'Surveillance',
+    icon: Camera,
+    color: 'text-purple-400',
+    bg: 'bg-purple-400/10',
+    border: 'border-purple-400/20',
+    desc: 'HD & IP cameras for 24/7 monitoring and recording.',
+    features: ['Night Vision', 'Mobile View', 'AI Detection'],
   },
   {
     id: 'access',
-    title: 'Access & Attendance',
-    icon: FingerPrintIcon,
-    desc: 'Secure entry and time-tracking biometrics for modern workplaces.',
-    features: ['Biometric Entry', 'Face Recognition', 'Attendance Logs'],
+    title: 'Access Control',
+    icon: Fingerprint,
+    color: 'text-green-400',
+    bg: 'bg-green-400/10',
+    border: 'border-green-400/20',
+    desc: 'Biometric and card-based secure entry systems.',
+    features: ['Face Recog', 'Time Attendance', 'Logs'],
   },
   {
     id: 'security',
-    title: 'Security Solutions',
-    icon: ShieldCheckIcon,
-    desc: '24/7 protection against intrusions with advanced burglar alarms.',
-    features: ['Motion Sensors', 'Door Contacts', 'Instant Alerts'],
+    title: 'Burglar Alarm',
+    icon: GalleryVerticalEnd,
+    color: 'text-red-400',
+    bg: 'bg-red-400/10',
+    border: 'border-red-400/20',
+    desc: 'Intrusion detection to protect your premises.',
+    features: ['Motion Sensors', 'Siren Alerts', 'App Control'],
   },
   {
     id: 'fire',
-    title: 'Fire Alarm System',
-    icon: FireIcon,
-    desc: 'Life-saving detection for all environments, addressable & conventional.',
-    features: ['Smoke Detection', 'Heat Sensors', 'Emergency Alarms'],
+    title: 'Fire Alarm',
+    icon: Flame,
+    color: 'text-orange-400',
+    bg: 'bg-orange-400/10',
+    border: 'border-orange-400/20',
+    desc: 'Early warning systems for fire safety.',
+    features: ['Smoke Detectors', 'Heat Sensors', 'Emergency Call'],
   },
   {
     id: 'networking',
-    title: 'Networking (DATA & VOICE)',
-    icon: WifiIcon,
-    desc: 'Reliable wired/wireless networks for seamless connectivity.',
-    features: ['Structured Cabling', 'Wi-Fi Solutions', 'Server Racks'],
+    title: 'Networking',
+    icon: Network,
+    color: 'text-cyan-400',
+    bg: 'bg-cyan-400/10',
+    border: 'border-cyan-400/20',
+    desc: 'Robust wired and wireless network infrastructure.',
+    features: ['Structured Cabling', 'Wi-Fi', 'Server Racks'],
   },
   {
     id: 'smart',
-    title: 'Smart Room Solutions',
-    icon: LightBulbIcon,
-    desc: 'Automated lighting, AV, and controls for modern living.',
-    features: ['Mood Lighting', 'Voice Control', 'Energy Saving'],
+    title: 'Smart Room',
+    icon: Lightbulb,
+    color: 'text-yellow-400',
+    bg: 'bg-yellow-400/10',
+    border: 'border-yellow-400/20',
+    desc: 'Automated lighting and climate control systems.',
+    features: ['Voice Control', 'Mood Lighting', 'Energy Saving'],
   },
   {
     id: 'elv',
-    title: 'ELV System',
-    icon: BoltIcon,
-    desc: 'Integrated low-voltage systems for building management.',
-    features: ['PA Systems', 'BMS Integration', 'Cable Management'],
+    title: 'ELV Systems',
+    icon: Zap,
+    color: 'text-indigo-400',
+    bg: 'bg-indigo-400/10',
+    border: 'border-indigo-400/20',
+    desc: 'Extra Low Voltage systems integration.',
+    features: ['PA Systems', 'BMS', 'Integration'],
   },
   {
     id: 'conference',
-    title: 'Video & Audio Conference',
-    icon: UserGroupIcon,
-    desc: 'High-quality hybrid meeting tech for global collaboration.',
-    features: ['4K Video', 'Noise Cancellation', 'Screen Sharing'],
+    title: 'Conferencing',
+    icon: Video,
+    color: 'text-pink-400',
+    bg: 'bg-pink-400/10',
+    border: 'border-pink-400/20',
+    desc: 'High-quality video and audio conferencing setup.',
+    features: ['4K Video', 'Clear Audio', 'Screen Share'],
   },
 ];
 
@@ -83,86 +110,89 @@ const Services = () => {
   const [activeTab, setActiveTab] = useState(services[0].id);
 
   return (
-    <section id="products" className="py-20 bg-[#0a0a0a] relative overflow-hidden">
+    <section id="products" className="py-24 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Our Solutions</h2>
-          <div className="w-20 h-1 bg-[#0ea5e9] mx-auto rounded-full"></div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+            Innovative Solutions
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Comprehensive security and technology services tailored for your peace of mind.
+          </p>
         </motion.div>
 
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Tabs Navigation */}
-          <div className="lg:w-1/3 flex lg:flex-col overflow-x-auto lg:overflow-visible gap-2 pb-4 lg:pb-0 scrollbar-hide">
-            {services.map((service) => (
-              <button
+          {/* Icons Grid / Tabs */}
+          <div className="lg:w-1/3 grid grid-cols-3 gap-3">
+            {services.map((service, idx) => (
+              <motion.button
                 key={service.id}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: idx * 0.05 }}
                 onClick={() => setActiveTab(service.id)}
-                className={`flex items-center gap-4 p-4 rounded-xl transition-all duration-300 min-w-[280px] lg:min-w-0 text-left border border-transparent ${
+                className={`p-4 rounded-xl flex flex-col items-center justify-center gap-2 transition-all duration-300 border ${
                   activeTab === service.id
-                    ? 'bg-[#0ea5e9]/10 border-[#0ea5e9] shadow-[0_0_15px_rgba(14,165,233,0.1)]'
-                    : 'hover:bg-white/5 hover:border-white/10'
+                    ? `${service.bg} ${service.border} shadow-[0_0_20px_rgba(0,0,0,0.5)] scale-105 z-10`
+                    : 'bg-white/5 border-transparent hover:bg-white/10 hover:border-white/10'
                 }`}
               >
-                <service.icon className={`w-8 h-8 ${activeTab === service.id ? 'text-[#0ea5e9]' : 'text-gray-400'}`} />
-                <div>
-                  <h3 className={`font-semibold ${activeTab === service.id ? 'text-white' : 'text-gray-300'}`}>
-                    {service.title.split('(')[0]}
-                  </h3>
-                  <p className="text-xs text-gray-500 truncate max-w-[200px]">{service.desc}</p>
-                </div>
-              </button>
+                <service.icon className={`w-8 h-8 ${service.color}`} />
+                <span className={`text-xs font-medium ${activeTab === service.id ? 'text-white' : 'text-gray-400'}`}>
+                  {service.title.split(' ')[0]}
+                </span>
+              </motion.button>
             ))}
           </div>
 
-          {/* Tab Content */}
-          <div className="lg:w-2/3 min-h-[400px]">
+          {/* Content Display */}
+          <div className="lg:w-2/3">
             <AnimatePresence mode="wait">
               {services.map((service) => (
                 activeTab === service.id && (
                   <motion.div
                     key={service.id}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
+                    initial={{ opacity: 0, x: 20, scale: 0.95 }}
+                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                    exit={{ opacity: 0, x: -20, scale: 0.95 }}
                     transition={{ duration: 0.3 }}
-                    className="bg-[#101018] border border-gray-800 rounded-2xl p-8 h-full relative group hover:border-[#0ea5e9]/50 transition-colors"
+                    className={`h-full rounded-3xl p-8 border ${service.border} bg-gradient-to-br from-black/80 to-transparent backdrop-blur-xl relative overflow-hidden`}
                   >
-                    <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
-                      <service.icon className="w-64 h-64" />
-                    </div>
+                    {/* Background Icon */}
+                    <service.icon className={`absolute -right-10 -bottom-10 w-64 h-64 opacity-5 ${service.color}`} />
                     
                     <div className="relative z-10">
                       <div className="flex items-center gap-4 mb-6">
-                        <div className="p-3 bg-[#0ea5e9]/20 rounded-lg">
-                          <service.icon className="w-8 h-8 text-[#0ea5e9]" />
+                        <div className={`p-4 rounded-2xl ${service.bg}`}>
+                          <service.icon className={`w-8 h-8 ${service.color}`} />
                         </div>
-                        <h3 className="text-2xl font-bold text-white">{service.title}</h3>
+                        <h3 className="text-3xl font-bold text-white">{service.title}</h3>
                       </div>
                       
-                      <p className="text-gray-300 text-lg mb-8 leading-relaxed">
+                      <p className="text-xl text-gray-300 mb-8 font-light">
                         {service.desc}
                       </p>
                       
-                      <div className="mb-8">
-                        <h4 className="text-[#0ea5e9] font-semibold mb-4 uppercase tracking-wider text-sm">Key Features</h4>
-                        <ul className="grid sm:grid-cols-2 gap-3">
-                          {service.features.map((feature, idx) => (
-                            <li key={idx} className="flex items-center gap-2 text-gray-400">
-                              <span className="w-1.5 h-1.5 bg-[#0ea5e9] rounded-full"></span>
-                              {feature}
-                            </li>
-                          ))}
-                        </ul>
+                      <div className="grid sm:grid-cols-3 gap-4 mb-8">
+                        {service.features.map((feature, idx) => (
+                          <div key={idx} className="bg-white/5 rounded-lg p-3 text-center border border-white/5">
+                            <span className={`text-sm font-medium ${service.color}`}>{feature}</span>
+                          </div>
+                        ))}
                       </div>
                       
-                      <button className="px-6 py-2 bg-[#0ea5e9] text-white rounded-lg hover:bg-[#0284c7] transition-colors font-medium text-sm">
-                        Learn More
+                      <button className={`px-8 py-3 rounded-xl font-bold text-white transition-all hover:scale-105 bg-gradient-to-r ${
+                        service.id === 'ipbx' ? 'from-blue-600 to-blue-400' : 
+                        service.id === 'security' ? 'from-red-600 to-red-400' :
+                        service.id === 'fire' ? 'from-orange-600 to-orange-400' :
+                        'from-purple-600 to-purple-400'
+                      }`}>
+                        View Details
                       </button>
                     </div>
                   </motion.div>
